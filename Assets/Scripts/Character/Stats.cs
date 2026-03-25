@@ -6,6 +6,14 @@ public class Stats{
     public float damage;
     public float speed;
     public float jumpForce;
+    public Stats(){
+        this.maxHP=0;
+        hp=maxHP;
+        this.speed=0;
+        this.defense=0;
+        this.damage=0;
+        this.jumpForce=0;
+    }
     public Stats(float maxHP,float speed,float defense,float damage,float jumpForce){
         this.maxHP=maxHP;
         hp=maxHP;

@@ -23,6 +23,10 @@ public class Inventory{
         if(HasItemInInventory(item)) inventorySlots[GetItemPosition(item)].quantity+=quantity;
         else inventorySlots.Add(new InventorySlot{ item=item , quantity=quantity});
     }
+    public void AddItem(InventorySlot slot){
+        if(HasItemInInventory(slot.item)) inventorySlots[GetItemPosition(slot.item)].quantity+=slot.quantity;
+        else inventorySlots.Add(new InventorySlot{ item=slot.item , quantity=slot.quantity});
+    }
     public void RemoveItem(Item item){
         if(HasItemInInventory(item)) inventorySlots.RemoveAt(GetItemPosition(item));
     }
