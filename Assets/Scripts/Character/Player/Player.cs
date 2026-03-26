@@ -10,6 +10,7 @@ public class Player : Character{
     [SerializeField] protected AbilityData ability;
     [SerializeField] protected Inventory inventory;
     protected override void Awake(){
+        LookUpResources.Init();//will move to another class but keeping it here for now
         //check if save if not load base stats
         InitializeStats(baseStats);
         baseAttack = new AttackHandler(ability.baseAttack);

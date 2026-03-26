@@ -34,7 +34,7 @@ public abstract class BaseProjectile : MonoBehaviour{
     }
     protected virtual void OnTriggerEnter(Collider collider){
         Debug.Log("hit: " + collider.gameObject.name + " layer: " + collider.gameObject.layer);
-        if(Settings.IsInLayerMask(collider.gameObject,data.hitMask))
+        if(Globals.IsInLayerMask(collider.gameObject,data.hitMask))
             OnHit(collider);
     }
 }

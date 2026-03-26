@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public static class Settings{
+public static class Globals{
     public static float gravityModifier=15.8f;
+    public static int SaveFile=0;
 
     public static bool XOR(bool a, bool b){ return a!=b; }//used for destinksion and usability
     public static bool OR(bool a, bool b){ return a||b; }//used for destinksion

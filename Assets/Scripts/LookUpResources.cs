@@ -6,7 +6,7 @@ public static class LookUpResources{
     private static List<AbilityData> allAbilityData = new List<AbilityData>();
     private static string itemsPath = "items";
     private static string abilityPath = "Ability";
-    private static void Init() {
+    public static void Init() {
         allItems = Resources.LoadAll<Item>(itemsPath).ToList();
         allAbilityData = Resources.LoadAll<AbilityData>(abilityPath).ToList();
     }

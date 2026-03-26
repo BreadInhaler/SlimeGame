@@ -35,7 +35,7 @@ public class CharacterMovement : MonoBehaviour{
         RotateCharacter();
     }
     private void GroundedCheck(){
-        if (!isGrounded) velocity.y-=Settings.gravityModifier*Time.deltaTime;
+        if (!isGrounded) velocity.y-=Globals.gravityModifier*Time.deltaTime;
         else velocity.y=0;
     }
     private void Jump(){
@@ -56,7 +56,7 @@ public class CharacterMovement : MonoBehaviour{
     private void RotateCharacter(){
         Vector3 lookRotation = new Vector3(velocity.x,0f,velocity.z);
         
-        if (Settings.OR(velocity.x != 0, velocity.z != 0))
+        if (Globals.OR(velocity.x != 0, velocity.z != 0))
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), turnSpeed * Time.deltaTime);
     }
     private void StaticMovement(){
@@ -94,10 +94,10 @@ public class CharacterMovement : MonoBehaviour{
     }
     public void OnCollisionEnter(Collision collision){
         int groundMask = LayerMask.GetMask("Floor");
-        if(Settings.IsInLayerMask(collision.gameObject,groundMask)) isGrounded=true;
+        if(Globals.IsInLayerMask(collision.gameObject,groundMask)) isGrounded=true;
     }
     public void OnCollisionExit(Collision collision){
         int groundMask = LayerMask.GetMask("Floor");
-        if(Settings.IsInLayerMask(collision.gameObject,groundMask)) isGrounded=false;
+        if(Globals.IsInLayerMask(collision.gameObject,groundMask)) isGrounded=false;
     }
 }
