@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe3062cc7eec9946976e7d65d4ba4ad, type: 3}
   m_Name: DefenseBreakEffect
   m_EditorClassIdentifier: Assembly-CSharp::DefenseBreakEffectSO
-  id: 
-  effectStrength: 0
+  id: basic_defense_break
+  effectStrength: 2
   duration: 10
   tickInterval: 1
   stackable: 0

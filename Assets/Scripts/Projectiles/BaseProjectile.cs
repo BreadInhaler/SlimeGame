@@ -3,10 +3,12 @@ public abstract class BaseProjectile : MonoBehaviour{
     protected ProjectileData data;
     protected Vector3 direction;
     protected float timer;
-    public void Instantiate(ProjectileData data,Vector3 direction){
+    protected StatusEffectInstance statusEffect;
+    public void Instantiate(ProjectileData data,Vector3 direction,StatusEffectInstance statusEffect){
         this.data=data;
         this.direction=direction.normalized;
         timer=0f;
+        this.statusEffect = statusEffect;
     }
     protected virtual void Update(){
         Move();
@@ -27,9 +29,11 @@ public abstract class BaseProjectile : MonoBehaviour{
         }
     }
     protected virtual void OnHit(Collider collider){
-        
-        if(data.statusEffect != null && collider.GetComponentInParent<Character>() != null)
-            data.statusEffect.OnApply(collider.GetComponentInParent<Character>(),data.statusEffect);
+        Character character = collider.GetComponentInParent<Character>();
+        if(statusEffect != null && character != null){
+            statusEffect.OnApply(character,statusEffect);
+            character.TakeDamage(data.damage);
+        }
         Destroy(gameObject);
     }
     protected virtual void OnTriggerEnter(Collider collider){

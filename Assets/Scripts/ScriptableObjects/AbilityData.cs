@@ -8,6 +8,3 @@ public class AbilityData : ScriptableObject{
     public Attack airAttack;
     public Attack runAttack;
 }
-public class Ability{
-    public AbilityData abilityData;
-}

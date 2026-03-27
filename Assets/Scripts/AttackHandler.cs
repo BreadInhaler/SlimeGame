@@ -36,7 +36,7 @@ public class AttackHandler{
                 player.transform
             );
             ProjectileEmitter emmitter = obj.GetComponent<ProjectileEmitter>();
-            emmitter.Setup(data.projectileData);
+            emmitter.Setup(data.projectileData,data.statusEffect);
             activeEmmitters.Add(emmitter);
         }
     }

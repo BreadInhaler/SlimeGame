@@ -11,5 +11,5 @@ public class ProjectileData : ScriptableObject{
     [Header("Mask")]
     public LayerMask hitMask;
     [Header("Effect")]
-    public StatusEffectInstance statusEffect;
+    public StatusEffectSO statusEffect;
 }

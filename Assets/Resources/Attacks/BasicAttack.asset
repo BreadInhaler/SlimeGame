@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Attack
   id: basic_attack
   damage: 10
-  statusEffect: {fileID: 0}
-  projectileData: {fileID: 11400000, guid: 7510c97e447c5d547afbed8e3aae9a7d, type: 2}
+  statusEffect: {fileID: 11400000, guid: add38c8c0a0d6b24c870d2daaa1d8c4e, type: 2}
+  projectileData: {fileID: 11400000, guid: 836caf0c444b2f4458713929098fcbb7, type: 2}
   numEmmitters: 1
-  offset: 2
-  archDir: 25
+  offset: 1
+  archDir: 0
   prefab: {fileID: 9191176617981965381, guid: ee94a13fbc0c76b418f718d3752f0274, type: 3}

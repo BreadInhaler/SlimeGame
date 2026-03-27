@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e301ef598df19458281aaf2116e29f, type: 3}
-  m_Name: FireEffect
+  m_Name: FireEffect 1
   m_EditorClassIdentifier: Assembly-CSharp::FireEffectSO
-  id: basic_fire
-  effectStrength: 10
+  id: 
+  effectStrength: 0
   duration: 10
   tickInterval: 1
   stackable: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530c9123d1048046a7fdb54c1aca8ae, type: 3}
   m_Name: BasicProjectile
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  prefab: {fileID: 5234471735408352060, guid: 72ee441d6dbd34a4caede32f62cad150, type: 3}
+  prefab: {fileID: 2580132383744809549, guid: 652785c051b928f42ab40acc175aa473, type: 3}
   id: basic
   damage: 1
   speed: 10
@@ -20,3 +20,4 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 264
+  statusEffect: {fileID: 0}

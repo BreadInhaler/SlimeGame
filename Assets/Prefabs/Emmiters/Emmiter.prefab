@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60563444ce805d94b9eadf083739bf30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileEmitter
-  projectileData: {fileID: 11400000, guid: 7510c97e447c5d547afbed8e3aae9a7d, type: 2}
+  projectileData: {fileID: 0}
+  statusEffect: {fileID: 0}
   ProjectilesParentObject: {fileID: 0}
 --- !u!33 &-361336117267532366
 MeshFilter:

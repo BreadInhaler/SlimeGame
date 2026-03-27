@@ -8,8 +8,12 @@ public class Character : MonoBehaviour{
     protected virtual void Awake() {
         InitializeStats(baseStats);
     }
+    private void Update(){
+        TickStatusEffects(Time.deltaTime);
+    }
     protected void InitializeStats(StatsSO stats){
         this.stats=new Stats(stats);
+        Debug.Log(gameObject.name+"'s stats initialized");
     }
     public void RecieveHeal(float healAmount,bool mult){
         if(mult) stats.hp+=stats.maxHP*healAmount;
@@ -44,10 +48,12 @@ public class Character : MonoBehaviour{
         foreach(StatusEffectInstance effect in statusEffects){
             effect.ModifyStats(current);
         }
+        print(gameObject.name+" 's defense: "+current.defense);
         return current;
     }
     public void ApplyStatusEffect(StatusEffectInstance effect){
         statusEffects.Add(effect);
+        print(gameObject.name+" recieved "+effect.effectData.id);
     }
     public void RemoveStatusEffect(StatusEffectInstance effect){
         statusEffects.Remove(effect);
