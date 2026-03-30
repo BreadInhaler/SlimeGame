@@ -20,6 +20,7 @@ public class ProjectileEmitter : MonoBehaviour{
         );
         Debug.Log(obj);
         BaseProjectile projectile = obj.GetComponent<BaseProjectile>();
-        projectile.Instantiate(projectileData,transform.forward,statusEffect.CreateEffectInstance());
+        if(statusEffect==null) projectile.Instantiate(projectileData,transform.forward);
+        else projectile.Instantiate(projectileData,transform.forward,statusEffect.CreateEffectInstance());
     }
 }

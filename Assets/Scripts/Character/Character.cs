@@ -8,7 +8,7 @@ public class Character : MonoBehaviour{
     protected virtual void Awake() {
         InitializeStats(baseStats);
     }
-    private void Update(){
+    protected void Update(){
         TickStatusEffects(Time.deltaTime);
     }
     protected void InitializeStats(StatsSO stats){

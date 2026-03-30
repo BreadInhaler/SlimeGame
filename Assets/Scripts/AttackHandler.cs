@@ -3,13 +3,34 @@ using System.Collections.Generic;
 
 public class AttackHandler{
     private Attack data;
+    private float sustainedTimer;
     private List<ProjectileEmitter> activeEmmitters = new List<ProjectileEmitter>();
     public AttackHandler(Attack data){
         this.data = data;
     }
     public void Execute(Player player){
-        CreateEmmitters(player);
-        FireEmmitters();
+        if(GetIsSustained()){
+            CreateEmmitters(player);
+            sustainedTimer=data.fireRate;
+        }else{
+            CreateEmmitters(player);
+            FireEmmitters();
+            DestroyEmmitters();
+        }
+    }
+    public void ExecuteTest(Player player){
+        
+    }
+    public void Tick(float deltaTime){
+        if(GetIsSustained() == false) return;
+        sustainedTimer+=deltaTime;
+        if(sustainedTimer>=data.fireRate){
+            FireEmmitters();
+            sustainedTimer=0f;
+        }
+    }
+    public void StopTicking(){
+        if(GetIsSustained() == false) return;
         DestroyEmmitters();
     }
     public void FireEmmitters(){
@@ -46,5 +67,8 @@ public class AttackHandler{
         }
         activeEmmitters.Clear();
         //destroy the game objects them selves or i can just activate and deactivate them acording with the attacks but i have to remake it so it works with such
+    }
+    public bool GetIsSustained(){
+        return data.isSustained;
     }
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bffd19e62e04a1d40b1633193f02b90e, type: 3}
+  m_Name: SustainedAttackbasic
+  m_EditorClassIdentifier: Assembly-CSharp::Attack
+  id: basic_sustained_attack
+  damage: 0
+  isSustained: 1
+  fireRate: 0.3
+  statusEffect: {fileID: 0}
+  projectileData: {fileID: 11400000, guid: 836caf0c444b2f4458713929098fcbb7, type: 2}
+  numEmmitters: 2
+  offset: 1
+  archDir: 0
+  prefab: {fileID: 9191176617981965381, guid: ee94a13fbc0c76b418f718d3752f0274, type: 3}

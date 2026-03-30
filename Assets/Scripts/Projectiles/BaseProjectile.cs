@@ -10,6 +10,11 @@ public abstract class BaseProjectile : MonoBehaviour{
         timer=0f;
         this.statusEffect = statusEffect;
     }
+    public void Instantiate(ProjectileData data,Vector3 direction){
+        this.data=data;
+        this.direction=direction.normalized;
+        timer=0f;
+    }
     protected virtual void Update(){
         Move();
         Rotate();
