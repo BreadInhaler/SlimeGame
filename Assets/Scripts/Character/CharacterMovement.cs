@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour{
-    public Animator animator;
+    //public Animator animator;
 
     public Stats stats;
 
@@ -46,7 +46,7 @@ public class CharacterMovement : MonoBehaviour{
     }
     private void VariableJump(){
         var isJumping= InputSystem.actions.FindAction("Jump");
-        animator.SetBool("isJumping",isJumping.IsPressed());
+        //animator.SetBool("isJumping",isJumping.IsPressed());
         if(isJumping.IsPressed() && isGrounded){
             velocity.y+=stats.jumpForce;
         }

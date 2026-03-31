@@ -30,7 +30,7 @@ public class Stats{
         this.damage=stats.damage;
         this.jumpForce=stats.jumpForce;
     }
-    public Stats(float hp,float maxHP,float speed,float defense,float damage,float jumpForce){
+    public Stats(float hp,float maxHP,float defense,float damage,float speed,float jumpForce){
         this.hp=hp;
         this.maxHP=maxHP;
         this.speed=speed;

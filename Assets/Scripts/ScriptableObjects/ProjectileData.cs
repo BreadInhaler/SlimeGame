@@ -10,6 +10,4 @@ public class ProjectileData : ScriptableObject{
     public float lifeTime;
     [Header("Mask")]
     public LayerMask hitMask;
-    [Header("Effect")]
-    public StatusEffectSO statusEffect;
 }

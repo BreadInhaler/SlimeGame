@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -22,7 +23,9 @@ public class Character : MonoBehaviour{
     }
     public void TakeDamage(float damage){
         Stats currentStats = RefreshStats();
+        print(gameObject.name+" is taking "+damage+" damage - "+currentStats.defense+" defense");
         float finalDamage = damage-currentStats.defense;//later add other stats relevant to calculation ex. item stats
+        print(gameObject.name+" is taking "+finalDamage+" final damage");
         if(finalDamage > 0)
             stats.hp-=finalDamage;
         if(stats.hp <= 0)
@@ -71,7 +74,35 @@ public class Character : MonoBehaviour{
     public Stats GetStats(){
         return stats;
     }
+    public Stats GetModifiedStats(){
+        return RefreshStats();
+    }
     private void Die(){
+        Destroy(this.gameObject);
         return;//later add the actuall behaviour
     }
+
+#if UNITY_EDITOR
+
+private void OnDrawGizmos(){
+    if(statusEffects == null || statusEffects.Count == 0) return;
+    
+    string label = gameObject.name + "\n";
+    foreach(StatusEffectInstance effect in statusEffects){
+        label += $"{effect.effectData.id} | stacks:{effect.stacks} | time:{effect.elapsedTime:F1}/{effect.effectData.duration}\n";
+    }
+    
+    Handles.Label(transform.position + Vector3.up * 2f, label);
+}
+#endif
+/*
+
+The `#if UNITY_EDITOR` wrapper is important — it means this code is completely stripped out in builds so it has zero performance impact in your actual game.
+
+You'll see it floating above each enemy in the Scene view like:
+
+Goblin
+FireEffect | stacks:2 | time:3.2/10.0
+DefenseBreak | stacks:1 | time:1.5/10.0
+*/
 }
