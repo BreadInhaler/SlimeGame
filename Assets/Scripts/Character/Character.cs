@@ -6,10 +6,10 @@ public class Character : MonoBehaviour{
     [SerializeField] protected Stats stats;
     [SerializeField] protected StatsSO baseStats;
     private List<StatusEffectInstance> statusEffects = new List<StatusEffectInstance>();
-    protected virtual void Awake() {
+    protected virtual void Awake(){
         InitializeStats(baseStats);
     }
-    protected void Update(){
+    protected virtual void Update(){
         TickStatusEffects(Time.deltaTime);
     }
     protected void InitializeStats(StatsSO stats){
@@ -21,7 +21,7 @@ public class Character : MonoBehaviour{
         else stats.hp+=healAmount;
         if (stats.hp>stats.maxHP) stats.hp=stats.maxHP;
     }
-    public void TakeDamage(float damage){
+    public virtual void TakeDamage(float damage){
         Stats currentStats = RefreshStats();
         print(gameObject.name+" is taking "+damage+" damage - "+currentStats.defense+" defense");
         float finalDamage = damage-currentStats.defense;//later add other stats relevant to calculation ex. item stats

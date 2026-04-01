@@ -11,7 +11,7 @@ public class CharacterEditor : Editor{
         
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("── Runtime Debug ──", EditorStyles.boldLabel);
-        
+        if(character.GetStats() == null) return;
         // Stats
         EditorGUILayout.LabelField("HP", character.GetStats().hp + " / " + character.GetStats().maxHP);
         EditorGUILayout.LabelField("Defense", character.RefreshStats().defense.ToString());

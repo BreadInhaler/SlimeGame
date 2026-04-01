@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseAbility
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   id: base_ability
-  prefab: {fileID: 0}
-  baseAttack: {fileID: 11400000, guid: 2d4cb394b0a7c6e4ea99296ea309ed50, type: 2}
+  prefab: {fileID: 4374276223333772607, guid: 48b5e2c9593ee664582e6354df46dc61, type: 3}
+  baseAttack: {fileID: 11400000, guid: 31ac07f2b21f00547a58a901cc6509d0, type: 2}
   airAttack: {fileID: 11400000, guid: b6a749a9f5fb6f445b6962d1bd0d4a4d, type: 2}
-  runAttack: {fileID: 11400000, guid: 31ac07f2b21f00547a58a901cc6509d0, type: 2}
+  runAttack: {fileID: 11400000, guid: 2d4cb394b0a7c6e4ea99296ea309ed50, type: 2}
