@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4058af94d5c6ac044af648e8d9337d49, type: 3}
-  m_Name: BaseAbility
+  m_Name: FireAbility
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
-  id: base_ability
-  icon: {fileID: 21300000, guid: 4acf0eef7cc3776429bd93b25865109e, type: 3}
-  prefab: {fileID: 4374276223333772607, guid: 48b5e2c9593ee664582e6354df46dc61, type: 3}
-  baseAttack: {fileID: 11400000, guid: 31ac07f2b21f00547a58a901cc6509d0, type: 2}
+  id: fire_ability
+  icon: {fileID: 21300000, guid: c4ed0ed56c220954c803ef36f2e53680, type: 3}
+  prefab: {fileID: 4374276223333772607, guid: cc44b4519c177c344bd3da83cbbb18d3, type: 3}
+  baseAttack: {fileID: 11400000, guid: 2d4cb394b0a7c6e4ea99296ea309ed50, type: 2}
   airAttack: {fileID: 11400000, guid: b6a749a9f5fb6f445b6962d1bd0d4a4d, type: 2}
-  runAttack: {fileID: 11400000, guid: 2d4cb394b0a7c6e4ea99296ea309ed50, type: 2}
+  runAttack: {fileID: 11400000, guid: 31ac07f2b21f00547a58a901cc6509d0, type: 2}

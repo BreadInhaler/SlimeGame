@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 public class Player : Character{
+    public Sprite emptyAbilityIcon;
     private HUDData hudData;
     public HUDHandler hudHandler;
     private InputAction attackInput;
@@ -13,8 +14,9 @@ public class Player : Character{
     private AttackHandler airAttack;
     private AttackHandler runAttack;
     [SerializeField] protected AbilityData ability;
+    [SerializeField] protected AbilityData memoryAbility;
     [SerializeField] protected Inventory inventory;
-    [SerializeField] private Item[] activeItems = new Item[3];
+    private List<Item> activeItems = new List<Item>();
     protected override void Awake(){
         attackInput= InputSystem.actions.FindAction("attack");
         itemInput = InputSystem.actions.FindAction("UseItem");
@@ -25,26 +27,44 @@ public class Player : Character{
         hudData = new HUDData();
         inventory = new Inventory();
         FillInventory();
+        InitializeAbility();
+        hudHandler.UpdateUI(hudData);
+        Instantiate(ability.prefab,this.transform.position,this.transform.rotation,this.transform);
     }
     private void FillInventory(){
-        inventory.AddItem(LookUpResources.GetItemById("basic_heal"),10);
-        inventory.AddItem(LookUpResources.GetItemById("super_heal"),5);
-        inventory.AddItem(LookUpResources.GetItemById("max_heal"),2);
-        activeItems[0] = inventory.SearchItemInInventory(LookUpResources.GetItemById("basic_heal"));
-        activeItems[1] = inventory.SearchItemInInventory(LookUpResources.GetItemById("super_heal"));
-        activeItems[2] = inventory.SearchItemInInventory(LookUpResources.GetItemById("max_heal"));
+        Item basicHealItem = LookUpResources.GetItemById("basic_heal");
+        Item superHealItem = LookUpResources.GetItemById("super_heal");
+        Item maxHealItem = LookUpResources.GetItemById("max_heal");
+        inventory.AddItem(basicHealItem,10);
+        inventory.AddItem(superHealItem,5);
+        inventory.AddItem(maxHealItem,2);
+        activeItems.Add(basicHealItem);
+        activeItems.Add(superHealItem);
+        activeItems.Add(maxHealItem);
+        print(basicHealItem);
+        hudData.items.Add(activeItems[0].id);
+        hudData.items.Add(activeItems[1].id);
+        hudData.items.Add(activeItems[2].id);
         Debug.Log(activeItems);
     }
     public override void TakeDamage(float damage){
         base.TakeDamage(damage);
         hudData.playerHP = stats.hp/stats.maxHP;
-        hudData.playerAbility = ability.id;
         hudHandler.UpdateUI(hudData);
     }
     private void ChangeAbility(AbilityData ability){
-        if(this.ability == ability) return;
+        //if(this.ability == ability) return;
+        GameObject playerPrefab = GameObject.Find(this.ability.prefab.name+"(Clone)");
+        //if(ability.prefab == GameObject.Find(this.ability.prefab.name)) print("checked yes");
+        if(playerPrefab) Destroy(playerPrefab);  
         Instantiate(ability.prefab,this.transform.position,this.transform.rotation,this.transform);
         this.ability=ability;
+        hudData.playerAbilityIcon = ability.icon;
+        hudData.playerAbility = ability.id;
+        if(memoryAbility!=null){
+            hudData.playerMemory = memoryAbility.id;
+            hudData.playerMemoryIcon = memoryAbility.icon;
+        }
         ChangeAttacks();
     }
     private void ChangeAttacks(){
@@ -63,10 +83,33 @@ public class Player : Character{
         List<InventorySlot> items = this.inventory.GetAllItems();
         if(itemInput.WasPerformedThisFrame()) {
             this.inventory.UseItem(items[itemInputInt].item,this);
-            Debug.Log("heal item used");
+            Debug.Log(items[itemInputInt].item.id+" used");
             hudData.playerHP = stats.hp/stats.maxHP;
-            hudData.playerAbility = ability.id;
+            UseMemoryAbility();
             hudHandler.UpdateUI(hudData);
+        }
+    }
+    private void InitializeAbility(){
+        this.ability=LookUpResources.GetAbilityById("base_ability");
+        hudData.playerAbilityIcon = ability.icon;
+        hudData.playerAbility = ability.id;
+        if(memoryAbility!=null){
+            hudData.playerMemory = memoryAbility.id;
+            hudData.playerMemoryIcon = memoryAbility.icon;
+        }
+    }
+    private void UseMemoryAbility(){
+        if(memoryAbility!=null) {
+            ChangeAbility(memoryAbility);
+            memoryAbility=null;
+        }
+        hudData.playerAbility = ability.id;
+        if(memoryAbility!=null){
+            hudData.playerMemory = memoryAbility.id;
+            hudData.playerMemoryIcon = memoryAbility.icon;
+        }else{
+            hudData.playerMemory = "empty";
+            hudData.playerMemoryIcon = emptyAbilityIcon;
         }
     }
     private bool IsAttackSustained(AttackHandler attack){

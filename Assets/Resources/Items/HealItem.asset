@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4325651aad7fa4b47938be3f280d39a8, type: 3}
   m_Name: HealItem
   m_EditorClassIdentifier: Assembly-CSharp::HealItem
-  id: 
-  description: 
-  healAmount: 0
+  id: basic_heal
+  description: yes
+  healAmount: 10
   mult: 0
