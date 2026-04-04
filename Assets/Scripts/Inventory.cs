@@ -30,10 +30,14 @@ public class Inventory{
     public void RemoveItem(Item item){
         if(HasItemInInventory(item)) inventorySlots.RemoveAt(GetItemPosition(item));
     }
-    public Item SearchItemInInventory(Item item){
+    public Item GetItemInInventory(Item item){
         for(int i=0;i<inventorySlots.Count;i++){
             if(inventorySlots[i].item == item) return item;
         }
+        return null;
+    }
+    public Item GetItemInInventory(int pos){
+        if(inventorySlots.Count >= pos) return inventorySlots[pos].item;
         return null;
     }
     public bool HasItemInInventory(Item item){

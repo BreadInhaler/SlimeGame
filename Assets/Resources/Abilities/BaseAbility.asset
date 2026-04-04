@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseAbility
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   id: base_ability
-  icon: {fileID: 21300000, guid: 4acf0eef7cc3776429bd93b25865109e, type: 3}
+  icon: {fileID: 21300000, guid: 4c99cc99127ffbc488203829e01dea0e, type: 3}
   prefab: {fileID: 4374276223333772607, guid: 48b5e2c9593ee664582e6354df46dc61, type: 3}
   baseAttack: {fileID: 11400000, guid: 31ac07f2b21f00547a58a901cc6509d0, type: 2}
   airAttack: {fileID: 11400000, guid: b6a749a9f5fb6f445b6962d1bd0d4a4d, type: 2}

@@ -14,7 +14,7 @@ public class Character : MonoBehaviour{
     }
     protected void InitializeStats(StatsSO stats){
         this.stats=new Stats(stats);
-        Debug.Log(gameObject.name+"'s stats initialized");
+        //Debug.Log(gameObject.name+"'s stats initialized");
     }
     public void RecieveHeal(float healAmount,bool mult){
         if(mult) stats.hp+=stats.maxHP*healAmount;
@@ -23,9 +23,9 @@ public class Character : MonoBehaviour{
     }
     public virtual void TakeDamage(float damage){
         Stats currentStats = RefreshStats();
-        print(gameObject.name+" is taking "+damage+" damage - "+currentStats.defense+" defense");
+        //print(gameObject.name+" is taking "+damage+" damage - "+currentStats.defense+" defense");
         float finalDamage = damage-currentStats.defense;//later add other stats relevant to calculation ex. item stats
-        print(gameObject.name+" is taking "+finalDamage+" final damage");
+        //print(gameObject.name+" is taking "+finalDamage+" final damage");
         if(finalDamage > 0)
             stats.hp-=finalDamage;
         if(stats.hp <= 0)
@@ -51,12 +51,12 @@ public class Character : MonoBehaviour{
         foreach(StatusEffectInstance effect in statusEffects){
             effect.ModifyStats(current);
         }
-        print(gameObject.name+" 's defense: "+current.defense);
+        //print(gameObject.name+" 's defense: "+current.defense);
         return current;
     }
     public void ApplyStatusEffect(StatusEffectInstance effect){
         statusEffects.Add(effect);
-        print(gameObject.name+" recieved "+effect.effectData.id);
+        //print(gameObject.name+" recieved "+effect.effectData.id);
     }
     public void RemoveStatusEffect(StatusEffectInstance effect){
         statusEffects.Remove(effect);

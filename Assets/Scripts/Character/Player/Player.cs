@@ -41,7 +41,7 @@ public class Player : Character{
         activeItems.Add(basicHealItem);
         activeItems.Add(superHealItem);
         activeItems.Add(maxHealItem);
-        print(basicHealItem);
+        //print(basicHealItem);
         hudData.items.Add(activeItems[0].id);
         hudData.items.Add(activeItems[1].id);
         hudData.items.Add(activeItems[2].id);
