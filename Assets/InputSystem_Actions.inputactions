@@ -88,13 +88,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MyLook",
-                    "type": "Value",
-                    "id": "3b99bb8c-28b5-4976-b0e2-dbf3f029c0a2",
+                    "name": "Memory",
+                    "type": "Button",
+                    "id": "1f2d8709-64b0-4d8a-ad3a-58bf8a54ffa4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -474,12 +474,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ff7e284f-0d39-4054-9801-dd8b0b26d657",
-                    "path": "<XInputController>/rightStick",
+                    "id": "4ef1107a-426f-4f06-8942-d96c9eb10294",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "MyLook",
+                    "groups": ";Gamepad",
+                    "action": "Memory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

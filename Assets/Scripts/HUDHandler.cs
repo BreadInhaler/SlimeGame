@@ -26,11 +26,6 @@ public class HUDHandler : MonoBehaviour{
         HUD.SetActive(HUDActive);
     }
     public void UpdateUI(HUDData data){
-        Debug.Log("items passed to ui is null? "+data.items==null+".");
-        if(data.items == null || data.items.Count == 0){
-            itemsObject.SetActive(false);
-            return;
-        }else itemsObject.SetActive(true);
         if(playerHPBar!=null) playerHPBar.fillAmount = data.playerHP;
         if(playerSPBar!=null) playerSPBar.fillAmount = data.playerSP;
         if(abilityText!=null) abilityText.text = data.playerAbility;
@@ -38,6 +33,10 @@ public class HUDHandler : MonoBehaviour{
         if(abilityIcon!=null) abilityIcon.sprite=data.playerAbilityIcon;
         if(abilityIcon!=null) memoryIcon.sprite=data.playerMemoryIcon;
         if(prevItemText!=null && currItemText!=null && nextItemText!=null) {
+            if(data.items == null || data.items.Count == 0){
+                itemsObject.SetActive(false);
+                return;
+            }else itemsObject.SetActive(true);
             if(data.items.Count==3){
                 prevItem.sprite=data.items[0].item.icon;
                 currItem.sprite=data.items[1].item.icon;

@@ -16,7 +16,7 @@ public class Character : MonoBehaviour{
         this.stats=new Stats(stats);
         //Debug.Log(gameObject.name+"'s stats initialized");
     }
-    public void RecieveHeal(float healAmount,bool mult){
+    public virtual void RecieveHeal(float healAmount,bool mult){
         if(mult) stats.hp+=stats.maxHP*healAmount;
         else stats.hp+=healAmount;
         if (stats.hp>stats.maxHP) stats.hp=stats.maxHP;

@@ -478,9 +478,6 @@ MonoBehaviour:
   pivot: {fileID: 1878922869}
   camArm: {fileID: 330585546}
   isLocked: 0
-  isTransitioning: 0
-  transitionTimer: 0
-  transitionDuration: 0.3
 --- !u!4 &386819711
 Transform:
   m_ObjectHideFlags: 0
@@ -1415,8 +1412,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 1, z: 14}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 14, y: 13, z: 14}
+  m_Center: {x: 0, y: 6, z: 0}
 --- !u!4 &1485760878
 Transform:
   m_ObjectHideFlags: 0
