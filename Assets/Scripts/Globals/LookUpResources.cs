@@ -20,7 +20,7 @@ public static class LookUpResources{
     public static AbilityData GetAbilityById(string id){
         for(int i = 0; i < allAbilityData.Count ; i++){
             if(allAbilityData[i].id == id){
-                Debug.Log("returning "+allAbilityData[i].id+" ability");
+                //Debug.Log("returning "+allAbilityData[i].id+" ability");
                 return allAbilityData[i];
             } 
                 

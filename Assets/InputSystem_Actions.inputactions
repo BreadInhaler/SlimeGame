@@ -331,6 +331,17 @@
                 },
                 {
                     "name": "",
+                    "id": "012a09b1-51d9-4783-91a5-8de485da0737",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "45df4fa7-b800-4a7c-a8ab-5f50cf1788a1",
                     "path": "<Keyboard>/#(1)",
                     "interactions": "",
@@ -342,11 +353,33 @@
                 },
                 {
                     "name": "",
+                    "id": "17ac9524-f649-4a96-98b2-dcb3bb617a61",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrevItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2e3e1624-b41e-47c1-b2d4-e3ce3e0125a9",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "NextItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "023bc747-1209-423e-ab1b-080302c4d3ec",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "NextItem",
                     "isComposite": false,
                     "isPartOfComposite": false

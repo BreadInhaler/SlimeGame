@@ -19,7 +19,7 @@ public class AttackHandler{
         }
     }
     public void ExecuteTest(Player player){
-        
+
     }
     public void Tick(float deltaTime){
         if(GetIsSustained() == false) return;
@@ -34,7 +34,7 @@ public class AttackHandler{
         DestroyEmmitters();
     }
     public void FireEmmitters(){
-        Debug.Log(activeEmmitters.Count);
+        //Debug.Log(activeEmmitters.Count);
         foreach(ProjectileEmitter emitter in activeEmmitters){
             emitter.Fire();
         }

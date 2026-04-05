@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealItem
   id: max_heal
   description: 
+  icon: {fileID: 21300000, guid: 9ed11837e3300314089e7a1a97a98a05, type: 3}
   healAmount: 100
   mult: 1

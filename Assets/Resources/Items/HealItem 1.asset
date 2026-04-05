@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealItem
   id: super_heal
   description: healk big
+  icon: {fileID: 21300000, guid: 0ef0115d75c9f584aa4994928d18a82d, type: 3}
   healAmount: 30
   mult: 0

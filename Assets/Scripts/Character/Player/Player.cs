@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System.Linq;
 public class Player : Character{
     public Sprite emptyAbilityIcon;
     private HUDData hudData;
     public HUDHandler hudHandler;
     private InputAction attackInput;
     private InputAction itemInput;
+    private InputAction prevItem;
+    private InputAction nextItem;
     public int itemInputInt=0;
     //do stuff here
     public CharacterMovement movement;
@@ -20,6 +23,8 @@ public class Player : Character{
     protected override void Awake(){
         attackInput= InputSystem.actions.FindAction("attack");
         itemInput = InputSystem.actions.FindAction("UseItem");
+        prevItem = InputSystem.actions.FindAction("PrevItem");
+        nextItem = InputSystem.actions.FindAction("NextItem");
         LookUpResources.Init();//will move to another class but keeping it here for now
         //check if save if not load base stats
         InitializeStats(baseStats);
@@ -31,21 +36,49 @@ public class Player : Character{
         hudHandler.UpdateUI(hudData);
         Instantiate(ability.prefab,this.transform.position,this.transform.rotation,this.transform);
     }
+    private int NextItem(){
+        if(inventory.GetAllItems().Count-1 == itemInputInt) return 0;
+        else return (itemInputInt+1);
+    }
+    private int PrevItem(){
+        if(itemInputInt == 0) return inventory.GetAllItems().Count-1;
+        else return (itemInputInt-1);
+    }
+    private void CycleItem(){
+        if(prevItem.WasPerformedThisFrame()) itemInputInt=PrevItem();
+        if(nextItem.WasPerformedThisFrame()) itemInputInt=NextItem();
+        UpdateInventoryUI();
+    }
+    private void UpdateInventoryUI(){
+        InventorySlot[] equippedItems = new InventorySlot[3];
+        List<InventorySlot> inventorySlots = this.inventory.GetAllItems();
+        Debug.Log("all inventoryslots count -> "+inventorySlots.Count);
+        if(inventorySlots.Count<=0){
+            hudData.items=null;
+            Debug.Log("set huddata items to null and returned");
+            Debug.Log("huddata items -> "+(hudData.items==null));
+            hudHandler.UpdateUI(hudData);
+            return;
+        }
+        equippedItems[0] =  inventorySlots[PrevItem()];
+        equippedItems[1] =  inventorySlots[itemInputInt];
+        equippedItems[2] =  inventorySlots[NextItem()];
+        hudData.items = equippedItems.ToList();
+        hudHandler.UpdateUI(hudData);
+    }
     private void FillInventory(){
         Item basicHealItem = LookUpResources.GetItemById("basic_heal");
         Item superHealItem = LookUpResources.GetItemById("super_heal");
         Item maxHealItem = LookUpResources.GetItemById("max_heal");
-        inventory.AddItem(basicHealItem,10);
-        inventory.AddItem(superHealItem,5);
-        inventory.AddItem(maxHealItem,2);
-        activeItems.Add(basicHealItem);
-        activeItems.Add(superHealItem);
-        activeItems.Add(maxHealItem);
+        Item defenseBuffItem = LookUpResources.GetItemById("defense_effect_item");
+        inventory.AddItem(basicHealItem,1);
+        inventory.AddItem(superHealItem,1);
+        inventory.AddItem(maxHealItem,1);
+        inventory.AddItem(defenseBuffItem,1);
         //print(basicHealItem);
-        hudData.items.Add(activeItems[0].id);
-        hudData.items.Add(activeItems[1].id);
-        hudData.items.Add(activeItems[2].id);
-        Debug.Log(activeItems);
+        //hudData.items.Add(activeItems[0].id);
+        //hudData.items.Add(activeItems[1].id);
+        //hudData.items.Add(activeItems[2].id);
     }
     public override void TakeDamage(float damage){
         base.TakeDamage(damage);
@@ -82,12 +115,18 @@ public class Player : Character{
         if(attackInput.WasPerformedThisFrame()) this.TakeDamage(5);
         List<InventorySlot> items = this.inventory.GetAllItems();
         if(itemInput.WasPerformedThisFrame()) {
-            this.inventory.UseItem(items[itemInputInt].item,this);
+            if(items.Count == 0){
+                UpdateInventoryUI();
+                return;
+            } 
             Debug.Log(items[itemInputInt].item.id+" used");
-            hudData.playerHP = stats.hp/stats.maxHP;
-            UseMemoryAbility();
-            hudHandler.UpdateUI(hudData);
+            Item item = items[itemInputInt].item;
+            if(inventory.UseItem(item,this)){
+                itemInputInt=PrevItem();
+                UpdateInventoryUI();
+            } 
         }
+        CycleItem();
     }
     private void InitializeAbility(){
         this.ability=LookUpResources.GetAbilityById("base_ability");

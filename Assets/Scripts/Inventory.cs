@@ -6,18 +6,25 @@ public class InventorySlot{
 }
 public class Inventory{
     private List<InventorySlot> inventorySlots = new List<InventorySlot>();
-    public void UseItem(Item item,Character character){
+    public bool UseItem(Item item,Character character){
         int pos;
         pos = GetItemPosition(item);
-        if(pos == -1) return;
         inventorySlots[pos].item.Use(character);
         inventorySlots[pos].quantity--;
-        if(CheckQuantity(inventorySlots[pos])) RemoveItem(item);
+        if(CheckQuantity(inventorySlots[pos])) {
+            RemoveItem(item);
+            return true;
+        }
+        return false;
     }
-    public void UseItemAtPos(int pos,Character character){
+    public bool UseItemAtPos(int pos,Character character){
         inventorySlots[pos].item.Use(character);
         inventorySlots[pos].quantity--;
-        if(CheckQuantity(inventorySlots[pos])) RemoveItem(inventorySlots[pos].item);
+        if(CheckQuantity(inventorySlots[pos])){
+            RemoveItem(inventorySlots[pos].item);
+            return true;
+        } 
+        return false;
     }
     public void AddItem(Item item , int quantity = 1){
         if(HasItemInInventory(item)) inventorySlots[GetItemPosition(item)].quantity+=quantity;

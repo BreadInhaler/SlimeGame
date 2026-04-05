@@ -16,5 +16,5 @@ public class HUDData{
     //[Range(0,1)]
     //public float enemyHP = 1f;
 
-    public List<string> items = new List<string>();
+    public List<InventorySlot> items = new List<InventorySlot>();
 }
