@@ -5,7 +5,7 @@ using System.Linq;
 public class Player : Character{
     //----------------------------------------------------------HUD------------------------------------------
     public Sprite emptyAbilityIcon;
-    private HUDData hudData;
+    public HUDData hudData;
     public HUDHandler hudHandler;
     //----------------------------------------------------------Input------------------------------------------
     private InputAction attackInput;
@@ -20,9 +20,10 @@ public class Player : Character{
     private AttackHandler baseAttack;
     private AttackHandler airAttack;
     private AttackHandler runAttack;
+    public Wallet wallet;
     [SerializeField] protected AbilityData ability;
     [SerializeField] protected AbilityData memoryAbility;
-    [SerializeField] protected Inventory inventory;
+    [SerializeField] public Inventory inventory;
     private List<Item> activeItems = new List<Item>();
     //----------------------------------------------------------Unity------------------------------------------
     protected override void Awake(){
@@ -34,8 +35,8 @@ public class Player : Character{
 
         hudData = new HUDData();
         inventory = new Inventory();
+        wallet = new Wallet(this,1);//temp later load json 
 
-        LookUpResources.Init();//will move to another class but keeping it here for now
         //check if save if not load base stats
         InitializeStats(baseStats);
 
@@ -64,6 +65,16 @@ public class Player : Character{
             } 
         }
         CycleItem();
+        if(Globals.lastHitEnemy!=null) {
+            Enemy enemy = Globals.lastHitEnemy;
+            hudData.enemyHP=enemy.GetStats().hp/enemy.GetStats().maxHP;
+            hudData.enemyName=enemy.gameObject.name;
+            hudHandler.UpdateUI(hudData);
+        }else{
+            hudData.enemyHP=0;
+            hudData.enemyName="";
+            hudHandler.UpdateUI(hudData);
+        }
     }
     //----------------------------------------------------------Override------------------------------------------
     public override void TakeDamage(float damage){
@@ -75,6 +86,10 @@ public class Player : Character{
         base.RecieveHeal(healAmount, mult);
         hudData.playerHP = stats.hp/stats.maxHP;
         hudHandler.UpdateUI(hudData);
+    }
+    public void PickUpItem(InventorySlot item){
+        inventory.AddItem(item);
+        UpdateInventoryUI();
     }
     //----------------------------------------------------------Abilities------------------------------------------
     private void ChangeAbility(AbilityData ability){

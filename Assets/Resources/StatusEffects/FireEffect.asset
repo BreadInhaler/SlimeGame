@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireEffect
   m_EditorClassIdentifier: Assembly-CSharp::FireEffectSO
   id: basic_fire
-  effectStrength: 11
+  effectStrength: 1
   duration: 10
   tickInterval: 1
   stackable: 0
