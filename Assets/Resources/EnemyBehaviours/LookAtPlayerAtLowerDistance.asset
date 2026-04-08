@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19670442043780142893d2cebb09689c, type: 3}
-  m_Name: BaseEnemy
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterStatsSO
-  maxHP: 20
-  defense: 1
-  damage: 5
-  speed: 4
-  jumpForce: 5
+  m_Script: {fileID: 11500000, guid: 07317586e9e081744a37fb19cd3b9f9a, type: 3}
+  m_Name: LookAtPlayerAtLowerDistance
+  m_EditorClassIdentifier: Assembly-CSharp::LookAtPlayerBehaviour
+  minDistance: 0
+  distanceSize: 3
+  shortDistance: 1
+  rotationSpeed: 200

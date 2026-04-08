@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9128971813307956631}
   - component: {fileID: 1965613622730157807}
   - component: {fileID: 2240884234697270574}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: BasicProjectile_Old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1706297683057904672}
   - component: {fileID: 8107169859157448200}
   - component: {fileID: 8963687479473255909}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

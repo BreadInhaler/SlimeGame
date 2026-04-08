@@ -12,11 +12,11 @@ TagManager:
   - Floor
   - Water
   - UI
-  - Projectile
+  - PlayerProjectile
   - Player
   - Enemy
   - Emmitter
-  - 
+  - EnemyProjectile
   - 
   - 
   - 

@@ -8,18 +8,15 @@ public class AttackHandler{
     public AttackHandler(Attack data){
         this.data = data;
     }
-    public void Execute(Player player){
+    public void Execute(Character character){
         if(GetIsSustained()){
-            CreateEmmitters(player);
+            CreateEmmitters(character);
             sustainedTimer=data.fireRate;
         }else{
-            CreateEmmitters(player);
+            CreateEmmitters(character);
             FireEmmitters();
             DestroyEmmitters();
         }
-    }
-    public void ExecuteTest(Player player){
-
     }
     public void Tick(float deltaTime){
         if(GetIsSustained() == false) return;
@@ -39,13 +36,13 @@ public class AttackHandler{
             emitter.Fire();
         }
     }
-    public void CreateEmmitters(Player player){
+    public void CreateEmmitters(Character character){
         for(int i=0;i<data.numEmmitters;i++){
             float angle = (360f / data.numEmmitters) * i;
-            Quaternion rotation = Quaternion.AngleAxis(angle, player.transform.up);
-            Vector3 dir = rotation * player.transform.forward;
-            Vector3 spawnPos = player.transform.position + dir * data.offset + Vector3.up * 0.5f;
-            Vector3 arcDir = Quaternion.AngleAxis(-data.archDir, player.transform.right) * dir;
+            Quaternion rotation = Quaternion.AngleAxis(angle, character.transform.up);
+            Vector3 dir = rotation * character.transform.forward;
+            Vector3 spawnPos = character.transform.position + dir * data.offset + Vector3.up * 0.5f;
+            Vector3 arcDir = Quaternion.AngleAxis(-data.archDir, character.transform.right) * dir;
             //spawnPos = new Vector3(spawnPos.x,spawnPos.x-data.offset,spawnPos.x);
             GameObject obj;
             //adding the emmiters gameobject
@@ -54,7 +51,7 @@ public class AttackHandler{
                 this.data.prefab,
                 spawnPos,
                 Quaternion.LookRotation(arcDir),
-                player.transform
+                character.transform
             );
             ProjectileEmitter emmitter = obj.GetComponent<ProjectileEmitter>();
             emmitter.Setup(data.projectileData,data.statusEffect);
