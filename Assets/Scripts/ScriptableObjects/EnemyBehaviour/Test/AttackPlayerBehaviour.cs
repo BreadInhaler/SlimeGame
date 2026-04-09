@@ -3,7 +3,7 @@ using UnityEngine;
 class AttackPlayerBehaviour : EnemyBehaviour{
     public override bool Execute(Enemy enemy){
         if(enemy.TargetInRange() == false) return false;
-        enemy.Attack();
+        enemy.AttackWithArc();
         return true;
     }
 }
