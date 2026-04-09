@@ -1,5 +1,5 @@
 using UnityEngine;
-[CreateAssetMenu(menuName = "Enemy/Behaviour/LookAtPlayer" , fileName = "LookAtPlayer")]
+[CreateAssetMenu(menuName = "Behaviour/LookAtPlayer" , fileName = "LookAtPlayer")]
 class LookAtPlayerInDistanceBehaviour : EnemyBehaviour{
     public float distanceModifier=2f;
     public bool shortDistance=true;

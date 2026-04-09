@@ -1,6 +1,6 @@
 using UnityEngine;
-[CreateAssetMenu(menuName = "Enemy/Behaviour/AttackPlayer",fileName = "AttackPlayer")]
-class AttackPlayerBehaviour : EnemyBehaviour{
+[CreateAssetMenu(menuName = "Behaviour/Attack",fileName = "Attack")]
+class AttackBehaviour : EnemyBehaviour{
     public override bool Execute(Enemy enemy){
         if(enemy.TargetInRange() == false) return false;
         enemy.AttackWithArc();

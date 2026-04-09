@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07317586e9e081744a37fb19cd3b9f9a, type: 3}
-  m_Name: LookAtPlayerAtHigherDistance
-  m_EditorClassIdentifier: Assembly-CSharp::LookAtPlayerBehaviour
-  minDistance: 0
-  distanceSize: 1.5
-  shortDistance: 0
-  rotationSpeed: 200
+  m_Script: {fileID: 11500000, guid: c1d3c6a4306cb0e46b2f0fec51090266, type: 3}
+  m_Name: AttackIfDistance
+  m_EditorClassIdentifier: Assembly-CSharp::AttackIfDistanceBehaviour
+  distanceModifier: 0
+  higher: 1

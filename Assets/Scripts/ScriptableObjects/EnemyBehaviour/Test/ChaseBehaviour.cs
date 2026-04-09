@@ -1,6 +1,6 @@
 using UnityEngine;
-[CreateAssetMenu(menuName = "Enemy/Behaviour/ChasePlayer",fileName = "ChasePlayer")]
-public class ChasePlayerBehaviour : EnemyBehaviour{
+[CreateAssetMenu(menuName = "Behaviour/Chase",fileName = "Chase")]
+public class ChaseBehaviour : EnemyBehaviour{
     public override bool Execute(Enemy enemy){
         if(enemy.TargetInRange() == false) return false;
 

@@ -1,5 +1,5 @@
 using UnityEngine;
-[CreateAssetMenu(menuName = "Enemy/Behaviour/AttackIfLockingAt" , fileName = "AttackIfLockingAt")]
+[CreateAssetMenu(menuName = "BehaviourConditional/AttackIfLockingAt" , fileName = "AttackIfLockingAt")]
 class AttackIfLookingAtBehaviour : EnemyBehaviour{
     public override bool Execute(Enemy enemy){
         if(enemy.TargetInRange() == false)return false;

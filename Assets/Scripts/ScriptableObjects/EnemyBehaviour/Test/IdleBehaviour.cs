@@ -1,5 +1,5 @@
 using UnityEngine;
-[CreateAssetMenu(menuName = "Enemy/Behaviour/Idle",fileName = "Idle")]
+[CreateAssetMenu(menuName = "Behaviour/Idle",fileName = "Idle")]
 public class IdleBehaviour : EnemyBehaviour{
     public bool stopMovement = false;
     public override bool Execute(Enemy enemy){

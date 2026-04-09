@@ -1,6 +1,6 @@
 using UnityEngine;
-[CreateAssetMenu(menuName = "Enemy/Behaviour/FleeFromPlayer",fileName = "FleeFromPlayer")]
-class FleeFromPlayerBehaviour : EnemyBehaviour{
+[CreateAssetMenu(menuName = "Behaviour/Flee",fileName = "Flee")]
+class FleeBehaviour : EnemyBehaviour{
     public float fleeDistance;
     public override bool Execute(Enemy enemy){
         if(enemy.TargetInRange()==false) return false;
