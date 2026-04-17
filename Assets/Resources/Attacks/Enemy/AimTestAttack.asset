@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bffd19e62e04a1d40b1633193f02b90e, type: 3}
   m_Name: AimTestAttack
   m_EditorClassIdentifier: Assembly-CSharp::Attack
-  id: 
+  id: test_arc_aim
   damage: 0
   isSustained: 0
   fireRate: 0
   statusEffect: {fileID: 0}
-  projectileData: {fileID: 0}
+  projectileData: {fileID: 11400000, guid: 5f988801c6b3c4d4baba732e411d1914, type: 2}
   numEmmitters: 1
   offset: 0
   archDir: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 9191176617981965381, guid: ee94a13fbc0c76b418f718d3752f0274, type: 3}

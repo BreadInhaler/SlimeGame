@@ -17,7 +17,7 @@ public class Wallet{
         return this.amount;
     }
     public bool HasEnough(int amount){
-        return this.amount <= amount;
+        return this.amount >= amount;
     }
     private void UpdateWalletUI() {
         player.hudData.playerMoney=this.amount;

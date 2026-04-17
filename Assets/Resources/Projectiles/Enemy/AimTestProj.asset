@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530c9123d1048046a7fdb54c1aca8ae, type: 3}
   m_Name: AimTestProj
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  prefab: {fileID: 0}
-  id: 
+  prefab: {fileID: 5234471735408352060, guid: 808c5cca090a98c4c8638e4333fca2aa, type: 3}
+  id: test_arc_aim
   damage: 0
-  speed: 0
-  lifeTime: 0
+  speed: 40
+  lifeTime: 20
   hitMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 136

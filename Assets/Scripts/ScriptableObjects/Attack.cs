@@ -3,6 +3,7 @@ using UnityEngine;
 public class Attack : ScriptableObject{
     public string id;
     public float damage;
+    public int spCost;
     public bool isSustained = false;
     public float fireRate = 0;
     public StatusEffectSO statusEffect;

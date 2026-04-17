@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f896e8f43a976a4fa7dc584eafc7293, type: 3}
   m_Name: LookIfDistanceLower
   m_EditorClassIdentifier: Assembly-CSharp::LookIfDistanceBehaviour
-  distanceModifier: 0
-  higher: 1
+  distanceModifier: 2
+  higher: 0
   rotationSpeed: 0

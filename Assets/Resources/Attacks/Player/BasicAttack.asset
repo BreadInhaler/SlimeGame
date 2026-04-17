@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Attack
   id: basic_attack
   damage: 10
+  spCost: 5
+  isSustained: 0
+  fireRate: 0
   statusEffect: {fileID: 11400000, guid: add38c8c0a0d6b24c870d2daaa1d8c4e, type: 2}
   projectileData: {fileID: 11400000, guid: 836caf0c444b2f4458713929098fcbb7, type: 2}
   numEmmitters: 1

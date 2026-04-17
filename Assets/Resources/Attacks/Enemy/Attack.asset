@@ -18,7 +18,7 @@ MonoBehaviour:
   fireRate: 10
   statusEffect: {fileID: 0}
   projectileData: {fileID: 11400000, guid: 532bf288e7cffe34c9468dba6646b0ac, type: 2}
-  numEmmitters: 4
+  numEmmitters: 1
   offset: 1
   archDir: 0
   prefab: {fileID: 9191176617981965381, guid: ee94a13fbc0c76b418f718d3752f0274, type: 3}

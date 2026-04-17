@@ -14,15 +14,17 @@ public class AttackHandler{
             sustainedTimer=data.fireRate;
         }else{
             CreateEmmitters(character,archDir,target);
-            FireEmmitters();
+            if(character.GetComponent<Player>()!=null) FireEmmitters(character.GetComponent<Player>());
+            else if(character.GetComponent<Enemy>()!=null) FireEmmitters(character.GetComponent<Enemy>());
             DestroyEmmitters();
         }
     }
-    public void Tick(float deltaTime){
+    public void Tick(float deltaTime,Character character){
         if(GetIsSustained() == false) return;
         sustainedTimer+=deltaTime;
         if(sustainedTimer>=data.fireRate){
-            FireEmmitters();
+            if(character.GetComponent<Player>()!=null) FireEmmitters(character.GetComponent<Player>());
+            else if(character.GetComponent<Enemy>()!=null) FireEmmitters(character.GetComponent<Enemy>());
             sustainedTimer=0f;
         }
     }
@@ -30,11 +32,18 @@ public class AttackHandler{
         if(GetIsSustained() == false) return;
         DestroyEmmitters();
     }
-    public void FireEmmitters(){
+    public void FireEmmitters(Player player){
         //Debug.Log(activeEmmitters.Count);
-        foreach(ProjectileEmitter emitter in activeEmmitters){
-            emitter.Fire();
+        if(player==null) return;
+        else{ 
+            if(player.spHandler.HasEnough(data.spCost)) foreach(ProjectileEmitter emitter in activeEmmitters) emitter.Fire();
+            player.spHandler.RemoveAmount(data.spCost);
+            Debug.Log("player sp removed");
         }
+    }
+    public void FireEmmitters(Enemy enemy){
+        //Debug.Log(activeEmmitters.Count);
+        foreach(ProjectileEmitter emitter in activeEmmitters) emitter.Fire();
     }
     public void CreateEmmitters(Character character,float arcDirection=0, Transform target=null){
         for(int i=0;i<data.numEmmitters;i++){

@@ -21,6 +21,7 @@ public class Player : Character{
     private AttackHandler airAttack;
     private AttackHandler runAttack;
     public Wallet wallet;
+    public SPHandler spHandler;
     [SerializeField] protected AbilityData ability;
     [SerializeField] protected AbilityData memoryAbility;
     [SerializeField] public Inventory inventory;
@@ -36,16 +37,22 @@ public class Player : Character{
         hudData = new HUDData();
         inventory = new Inventory();
         wallet = new Wallet(this,1);//temp later load json 
+        spHandler = new SPHandler(this,50,100);//temp later load json 
 
         //check if save if not load base stats
         InitializeStats(baseStats);
 
+
         FillInventory();
         InitializeAbility();
+        StopAttacks();
     }
     protected override void Update(){
         base.Update();
         TickAttacks();
+        print(spHandler.amount+" sp");
+        print(spHandler.maxAmount+" maxsp");
+        print((spHandler.amount/spHandler.maxAmount)+" % sp");
         if(movement.isGrounded == false) HandleAttack(airAttack);
         else HandleAttack(baseAttack);
         if(memoryInput.WasPerformedThisFrame()) ChangeAbility(memoryAbility);
@@ -153,9 +160,9 @@ public class Player : Character{
         if(attackInput.WasReleasedThisFrame()) runAttack.StopTicking();
     }
     private void TickAttacks(){
-        if(IsAttackSustained(baseAttack)) baseAttack.Tick(Time.deltaTime);
-        if(IsAttackSustained(airAttack)) airAttack.Tick(Time.deltaTime);
-        if(IsAttackSustained(runAttack)) runAttack.Tick(Time.deltaTime);
+        if(IsAttackSustained(baseAttack)) baseAttack.Tick(Time.deltaTime,this);
+        if(IsAttackSustained(airAttack)) airAttack.Tick(Time.deltaTime,this);
+        if(IsAttackSustained(runAttack)) runAttack.Tick(Time.deltaTime,this);
     }
     //if(buttonpressed) do ability.baseAttack.use
     //if(buttonpressed && notgrounded) ability.airAttack.use

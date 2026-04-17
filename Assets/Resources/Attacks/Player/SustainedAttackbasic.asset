@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Attack
   id: basic_sustained_attack
   damage: 0
+  spCost: 5
   isSustained: 1
   fireRate: 0.3
   statusEffect: {fileID: 0}

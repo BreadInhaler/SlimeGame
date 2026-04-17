@@ -4,11 +4,12 @@ using System.Linq;
 public static class LookUpResources{
     private static List<Item> allItems = new List<Item>();
     private static List<AbilityData> allAbilityData = new List<AbilityData>();
-    private static string itemsPath = "items";
+    private static string itemsPath = "Items";
     private static string abilityPath = "Abilities";
     public static void Init() {
         allItems = Resources.LoadAll<Item>(itemsPath).ToList();
         allAbilityData = Resources.LoadAll<AbilityData>(abilityPath).ToList();
+        GetAllItems();
     }
     public static Item GetItemById(string id){
         for(int i = 0; i < allItems.Count ; i++){
@@ -29,6 +30,7 @@ public static class LookUpResources{
         return null;
     }
     public static List<Item> GetAllItems(){
+        for(int i=0;i<allItems.Count;i++) Debug.Log("item pos "+i+" has returned "+allItems[i].id+" id");
         return allItems;
     }
     public static List<AbilityData> GetAbilityData(){
