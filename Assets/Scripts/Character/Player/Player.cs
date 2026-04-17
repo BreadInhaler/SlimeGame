@@ -24,7 +24,6 @@ public class Player : Character{
     public SPHandler spHandler;
     [SerializeField] protected AbilityData ability;
     [SerializeField] protected AbilityData memoryAbility;
-    [SerializeField] public Inventory inventory;
     private List<Item> activeItems = new List<Item>();
     //----------------------------------------------------------Unity------------------------------------------
     protected override void Awake(){

@@ -4,12 +4,14 @@ using System.Collections.Generic;
 public class AttackHandler{
     public Attack data;
     private float sustainedTimer;
+    public bool isExecuting=false;
     private List<ProjectileEmitter> activeEmmitters = new List<ProjectileEmitter>();
     public AttackHandler(Attack data){
         this.data = data;
     }
     public void Execute(Character character,float archDir=0,Transform target=null){
         if(GetIsSustained()){
+            isExecuting=true;
             CreateEmmitters(character,archDir,target);
             sustainedTimer=data.fireRate;
         }else{
@@ -20,7 +22,7 @@ public class AttackHandler{
         }
     }
     public void Tick(float deltaTime,Character character){
-        if(GetIsSustained() == false) return;
+        if(GetIsSustained() == false || isExecuting==false) return;
         sustainedTimer+=deltaTime;
         if(sustainedTimer>=data.fireRate){
             if(character.GetComponent<Player>()!=null) FireEmmitters(character.GetComponent<Player>());
@@ -30,6 +32,7 @@ public class AttackHandler{
     }
     public void StopTicking(){
         if(GetIsSustained() == false) return;
+        isExecuting=false;
         DestroyEmmitters();
     }
     public void FireEmmitters(Player player){

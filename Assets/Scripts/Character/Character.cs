@@ -6,8 +6,10 @@ public class Character : MonoBehaviour{
     [SerializeField] protected Stats stats;
     [SerializeField] protected StatsSO baseStats;
     private List<StatusEffectInstance> statusEffects = new List<StatusEffectInstance>();
+    [SerializeField] protected Inventory inventory;
     protected virtual void Awake(){
         InitializeStats(baseStats);
+        inventory = new Inventory();
     }
     protected virtual void Update(){
         TickStatusEffects(Time.deltaTime);
@@ -77,7 +79,7 @@ public class Character : MonoBehaviour{
     public Stats GetModifiedStats(){
         return RefreshStats();
     }
-    private void Die(){
+    protected virtual void Die(){
         Destroy(this.gameObject);
         return;//later add the actuall behaviour
     }

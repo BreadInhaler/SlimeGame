@@ -36,4 +36,7 @@ public static class LookUpResources{
     public static List<AbilityData> GetAbilityData(){
         return allAbilityData;
     }
+    public static GameObject GetDropPrefab(){
+        return Resources.LoadAll<GameObject>("DropPrefab")[0];
+    }
 }

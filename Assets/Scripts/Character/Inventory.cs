@@ -56,6 +56,9 @@ public class Inventory{
         }
         return -1;
     }
+    public InventorySlot GetSlot(int pos){
+        return inventorySlots[pos];
+    }
     public bool CheckQuantity(InventorySlot slot){
         if(slot.quantity==0) return true;
         else return false;

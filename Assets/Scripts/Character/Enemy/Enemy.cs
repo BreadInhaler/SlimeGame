@@ -12,6 +12,7 @@ public class Enemy : Character{
     public List<EnemyBehaviour> enemyBehaviours = new List<EnemyBehaviour>();
     public List<Attack> attacks = new List<Attack>();
     private List<AttackHandler> attackHandlers = new List<AttackHandler>();
+    [SerializeField] private int moneyDrop;
     //---------------------------------------------Overrides----------------------------------
     protected override void Awake(){
         base.Awake();
@@ -26,9 +27,20 @@ public class Enemy : Character{
     protected override void Update(){
         base.Update();
         pathUpdateTimer += Time.deltaTime;
-        for(int i=0;i<enemyBehaviours.Count;i++){
-            if(enemyBehaviours[i].Execute(this)) break;
+        for(int i=0;i<enemyBehaviours.Count;i++) if(enemyBehaviours[i].Execute(this)) break;
+    }
+    protected override void Die(){
+        if(Globals.XOR(this.inventory.GetAllItems().Count > 0 , moneyDrop > 0)){
+            GameObject drop;
+            drop = Instantiate(LookUpResources.GetDropPrefab(),transform.position,transform.rotation);
+            ItemDrop itemDrop=drop.GetComponentInChildren<ItemDrop>();
+            print((itemDrop==null)+" is null");
+            if(inventory.GetAllItems().Count>0){
+                InventorySlot slot = inventory.GetSlot(0);
+                itemDrop.Instantiate(slot);
+            }else if(moneyDrop > 0) itemDrop.Instantiate(moneyDrop);
         }
+        base.Die();
     }
     //---------------------------------------------PlayerTargetFuncions----------------------------------
     public bool TargetInRange(){
@@ -52,14 +64,10 @@ public class Enemy : Character{
     }
     //---------------------------------------------OtherStuff----------------------------------
     private void FillAttacks(){
-        for(int i=0;i<attacks.Count;i++){
-            attackHandlers.Add(new AttackHandler(attacks[i]));
-        }
+        for(int i=0;i<attacks.Count;i++) attackHandlers.Add(new AttackHandler(attacks[i]));
     }
     public void Attack(){
-        for(int i = 0;i<attackHandlers.Count;i++){
-            attackHandlers[i].Execute(this);
-        }
+        for(int i = 0;i<attackHandlers.Count;i++) attackHandlers[i].Execute(this);
     }
     public void AttackWithArc(){
         ProjectileData pData = attackHandlers[0].data.projectileData;
