@@ -1,11 +1,12 @@
-using UnityEngine;
 using System.Collections.Generic;
+[System.Serializable]
 public class InventorySlot{
     public Item item;
     public int quantity=0;
 }
+[System.Serializable]
 public class Inventory{
-    private List<InventorySlot> inventorySlots = new List<InventorySlot>();
+    [UnityEngine.SerializeField] private List<InventorySlot> inventorySlots = new List<InventorySlot>();
     public bool UseItem(Item item,Character character){
         int pos;
         pos = GetItemPosition(item);

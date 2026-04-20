@@ -1,4 +1,4 @@
-using UnityEngine;
+[System.Serializable]
 public class Stats{
     public float hp;
     public float maxHP;

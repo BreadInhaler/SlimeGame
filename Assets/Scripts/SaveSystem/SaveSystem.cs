@@ -1,29 +1,41 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+[System.Serializable]
 public class SaveData{
     public PlayerStatsSaveData playerStats;
+    public PlayerExtraSaveData playerExtraSaveData;
     public InventorySaveData inventorySaveData;
 }   
+[System.Serializable]
 public class PlayerExtraSaveData{
     public string abilityId;
+    public string memoryAbilityId;
+    public float spAmount;
+    public float maxSPAmount;
+    public float moneyAmount;
 }
+[System.Serializable]
 public class PlayerStatsSaveData{
     public float hp;
     public float maxHP;
     public float speed;
     public float defense;
+    public float damage;
+    public float jumpForce;
 }
+[System.Serializable]
 public class InventorySaveData{
-    public List<InventorySlotSaveData> inventorySlots;
+    public List<InventorySlotSaveData> inventorySlots = new List<InventorySlotSaveData>();
 }
+[System.Serializable]
 public class InventorySlotSaveData{
     public string itemId;
     public int quantity;
 }
 public static class SaveSystem{
     #if UNITY_EDITOR
-        private static string absPath=Application.dataPath+"/../";
+        private static string absPath=Application.dataPath+"";
     #else
         private static string absPath=Application.persistentDataPath;
     #endif

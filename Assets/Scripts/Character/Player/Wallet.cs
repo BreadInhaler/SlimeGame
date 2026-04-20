@@ -6,6 +6,11 @@ public class Wallet{
         this.amount=amount;
         UpdateWalletUI();
     }
+    public Wallet(Player player,float amount){
+        this.player=player;
+        this.amount=(int)amount;
+        UpdateWalletUI();
+    }
     public int AddAmount(int amount){
         this.amount+=amount;
         UpdateWalletUI();
@@ -22,5 +27,8 @@ public class Wallet{
     private void UpdateWalletUI() {
         player.hudData.playerMoney=this.amount;
         player.hudHandler.UpdateUI(player.hudData);
+    }
+    public int GetAmount(){
+        return amount;
     }
 }

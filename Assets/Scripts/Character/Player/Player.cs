@@ -13,9 +13,11 @@ public class Player : Character{
     private InputAction prevItem;
     private InputAction nextItem;
     private InputAction memoryInput;
+    private InputAction saveInput;
     public int itemInputInt=0;
     //----------------------------------------------------------Other Stuff------------------------------------------
     //do stuff here
+    
     public CharacterMovement movement;
     private AttackHandler baseAttack;
     private AttackHandler airAttack;
@@ -24,7 +26,7 @@ public class Player : Character{
     public SPHandler spHandler;
     [SerializeField] protected AbilityData ability;
     [SerializeField] protected AbilityData memoryAbility;
-    private List<Item> activeItems = new List<Item>();
+    //private List<Item> activeItems = new List<Item>();
     //----------------------------------------------------------Unity------------------------------------------
     protected override void Awake(){
         attackInput= InputSystem.actions.FindAction("attack");
@@ -32,6 +34,7 @@ public class Player : Character{
         prevItem = InputSystem.actions.FindAction("PrevItem");
         nextItem = InputSystem.actions.FindAction("NextItem");
         memoryInput = InputSystem.actions.FindAction("Memory");
+        saveInput = InputSystem.actions.FindAction("SaveGame");
 
         hudData = new HUDData();
         inventory = new Inventory();
@@ -41,20 +44,20 @@ public class Player : Character{
         //check if save if not load base stats
         InitializeStats(baseStats);
 
-
+        LoadGame();
         FillInventory();
-        InitializeAbility();
+        InitializeAbility(this.ability.id);
+
         StopAttacks();
     }
     protected override void Update(){
         base.Update();
         TickAttacks();
-        print(spHandler.amount+" sp");
-        print(spHandler.maxAmount+" maxsp");
-        print((spHandler.amount/spHandler.maxAmount)+" % sp");
+        spHandler.UpdateSPAmout(Time.deltaTime);
         if(movement.isGrounded == false) HandleAttack(airAttack);
         else HandleAttack(baseAttack);
         if(memoryInput.WasPerformedThisFrame()) ChangeAbility(memoryAbility);
+        if(saveInput.WasPerformedThisFrame()) SaveGame();
         
         StopAttacks();
         if(attackInput.WasPerformedThisFrame()) this.TakeDamage(5);
@@ -114,13 +117,16 @@ public class Player : Character{
         ChangeAttacks();
         hudHandler.UpdateUI(hudData);
     }
-    private void InitializeAbility(){
-        this.ability=LookUpResources.GetAbilityById("base_ability");
+    private void InitializeAbility(string id){
+        this.ability=LookUpResources.GetAbilityById(id);
         hudData.playerAbilityIcon = ability.icon;
         hudData.playerAbility = ability.id;
         if(memoryAbility!=null){
             hudData.playerMemory = memoryAbility.id;
             hudData.playerMemoryIcon = memoryAbility.icon;
+        }else{
+            hudData.playerMemory = "empty";
+            hudData.playerMemoryIcon = emptyAbilityIcon;
         }
         ChangeAttacks();
         hudHandler.UpdateUI(hudData);
@@ -216,5 +222,37 @@ public class Player : Character{
         //hudData.items.Add(activeItems[0].id);
         //hudData.items.Add(activeItems[1].id);
         //hudData.items.Add(activeItems[2].id);
+    }
+    //----------------------------------------------------------SaveStuff------------------------------------------
+    private void SaveGame(){
+        SaveData saveData = new SaveData();
+        saveData.playerStats = new PlayerStatsSaveData();
+        saveData.playerStats = SaveConverter.ConvertStatsToStatsSaveData(this.stats);
+        saveData.inventorySaveData = new InventorySaveData();
+        saveData.inventorySaveData = SaveConverter.ConvertInventoryToInventorySaveData(this.inventory);
+        saveData.playerExtraSaveData = new PlayerExtraSaveData{
+            abilityId = this.ability.id,
+            memoryAbilityId =(memoryAbility!=null)? memoryAbility.id:"",
+            moneyAmount = wallet.GetAmount(),
+            spAmount = spHandler.GetAmount(),
+            maxSPAmount = spHandler.GetMaxAmount()
+        };
+        SaveSystem.SaveGame(saveData,Globals.SaveFile);
+    }
+    private void LoadGame(){
+        SaveData data = new SaveData();
+        data = SaveSystem.LoadGame(Globals.SaveFile);
+        PlayerExtraSaveData extraData = data.playerExtraSaveData;
+
+        this.stats = new Stats();
+        stats = SaveConverter.ConvertStatsSaveDataToStats(data.playerStats);
+        ability = SaveConverter.ConvertAbilityIdToAbility(extraData.abilityId);
+        memoryAbility = SaveConverter.ConvertAbilityIdToAbility(extraData.memoryAbilityId);
+        wallet = new Wallet(this,extraData.moneyAmount);
+        spHandler = new SPHandler(this,extraData.spAmount,extraData.maxSPAmount);
+        if(memoryAbility==null) UseMemoryAbility();
+        inventory = SaveConverter.ConvertInvetorySaveDataToInventory(data.inventorySaveData);
+        hudData.playerHP=stats.hp/stats.maxHP;
+        UpdateInventoryUI();
     }
 }

@@ -4,9 +4,10 @@ public static class SaveConverter{
         InventorySaveData data = new InventorySaveData();
         List<InventorySlot> inventorySlots = inventory.GetAllItems();
         foreach(InventorySlot slot in inventorySlots){
-            InventorySlotSaveData slotData = new InventorySlotSaveData();
-            slotData.itemId = slot.item.id;
-            slotData.quantity = slot.quantity;
+            InventorySlotSaveData slotData = new InventorySlotSaveData{
+                itemId = slot.item.id,
+                quantity = slot.quantity
+            };
             data.inventorySlots.Add(slotData);
         }
         return data;
@@ -28,6 +29,8 @@ public static class SaveConverter{
         stats.maxHP = data.maxHP;
         stats.defense = data.defense;
         stats.speed = data.speed;
+        stats.damage = data.damage;
+        stats.jumpForce = data.jumpForce;
         return stats;
     }
     public static PlayerStatsSaveData ConvertStatsToStatsSaveData(Stats stats){
@@ -36,6 +39,8 @@ public static class SaveConverter{
         data.maxHP = stats.maxHP;
         data.defense = stats.defense;
         data.speed = stats.speed;
+        data.damage = stats.damage;
+        data.jumpForce = stats.jumpForce;
         return data;
     }
     public static AbilityData ConvertAbilityIdToAbility(string id){

@@ -95,6 +95,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SaveGame",
+                    "type": "Button",
+                    "id": "41868a0e-0725-413b-9e95-11e4d1f1b2ae",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -480,6 +489,28 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Memory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f76435c5-75aa-4858-b6f0-f72d8e6c45ef",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "SaveGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dd93af4-2309-4660-b869-0acf4c20f934",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "SaveGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

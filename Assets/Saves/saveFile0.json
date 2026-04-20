@@ -1,0 +1,45 @@
+{
+    "playerStats": {
+        "hp": 90.0,
+        "maxHP": 100.0,
+        "speed": 7.0,
+        "defense": 1.0,
+        "damage": 1.0,
+        "jumpForce": 8.0
+    },
+    "playerExtraSaveData": {
+        "abilityId": "base_ability",
+        "memoryAbilityId": "fire_ability",
+        "spAmount": 99.0,
+        "maxSPAmount": 100.0,
+        "moneyAmount": 210.0
+    },
+    "inventorySaveData": {
+        "inventorySlots": [
+            {
+                "itemId": "basic_heal",
+                "quantity": 3
+            },
+            {
+                "itemId": "super_heal",
+                "quantity": 6
+            },
+            {
+                "itemId": "max_heal",
+                "quantity": 4
+            },
+            {
+                "itemId": "basic_sp_item",
+                "quantity": 1
+            },
+            {
+                "itemId": "max_sp_item",
+                "quantity": 3
+            },
+            {
+                "itemId": "defense_effect_item",
+                "quantity": 6
+            }
+        ]
+    }
+}
